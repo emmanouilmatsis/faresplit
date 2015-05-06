@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block main %}
+
+<section class="transaction">
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('post_transaction') }}" method="post" class="post-transaction">
+        <dl>
+            <dt>Payer:</dt>
+            <dd><input type="text" name="payer">
+
+            <dt>Payee:</dt>
+            <dd><input type="text" name="payee">
+
+            <dt>Amount:</dt>
+            <dd><input type="text" name="amount">
+
+            <dd><input type="submit" value="Post">
+        </dl>
+    </form>
+
+    <a href="{{ url_for('get_transaction') }}" class="get-transaction">Get</a>
+
+    <ul class="list-transaction">
+        {% for transaction in transactions %}
+        <li>
+            <dl>
+                <dt>Payer:</dt>
+                <dd>{{ transaction[1] }}</dd>
+
+                <dt>Payee:</dt>
+                <dd>{{ transaction[2] }}</dd>
+
+                <dt>Amount:</dt>
+                <dd>{{ transaction[3] }}</dd>
+            </dl>
+        </li>
+        {% else %}
+        <li>No transactions.</li>
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}
