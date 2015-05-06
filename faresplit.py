@@ -1,17 +1,12 @@
-import os
-import time
-import datetime
 from sqlite3 import dbapi2 as sqlite3
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, request, g, redirect, url_for, render_template, flash
 
 import farespliter
 
 
-DATABASE="/tmp/faresplit.db"
-DEBUG=True
-SECRET_KEY="development key"
-USERNAME="admin"
-PASSWORD="default"
+DATABASE = "/tmp/faresplit.db"
+SECRET_KEY='development key'
+DEBUG = True
 
 
 app = Flask(__name__)
@@ -28,7 +23,6 @@ def init_db():
 def get_db():
     if not hasattr(g, "sqlite_db"):
         g.sqlite_db = sqlite3.connect(app.config["DATABASE"])
-        #g.sqlite_db.row_factory = sqlite3.Row
     return g.sqlite_db
 
 

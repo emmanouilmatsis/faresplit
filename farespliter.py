@@ -1,6 +1,9 @@
 import decimal
 
 
+GLOBBING_WILDCARD = "*"
+
+
 class User:
 
     @property
@@ -75,7 +78,7 @@ class Farespliter:
                 payer = User(transaction.payer, transaction.amount)
                 users.append(payer)
 
-            if transaction.payee != "*":
+            if transaction.payee != GLOBBING_WILDCARD:
                 for payee in users:
                     if payee.name == transaction.payee:
                         payee.balance -= transaction.amount
@@ -88,7 +91,6 @@ class Farespliter:
 
         for user in users:
             user.balance -= total / len(users)
-            print(user.name, user.balance)
 
         return users
 
