@@ -81,7 +81,7 @@ class Farespliter:
                         payee.balance -= transaction.amount
                         break
                 else:
-                    payee = User(transaction.payee, transaction.amount)
+                    payee = User(transaction.payee, -transaction.amount)
                     users.append(payee)
 
         total = sum(user.balance for user in users)
@@ -102,7 +102,7 @@ class Farespliter:
             j = 0
             while j < n - i:
 
-                if users[j].balance > users[j+i].balance: #XXX: borrower is negativve
+                if users[j].balance > users[j+i].balance:
                     users[j], users[j+i] = users[j+i], users[j]
 
                 transaction = Transaction(users[j].name, users[j+i].name, users[j+i].balance)

@@ -56,7 +56,7 @@ def post_transaction():
             [request.form["payer"], request.form["payee"], request.form["amount"]])
     db.commit()
 
-    flash("New transaction was successfully posted.")
+    flash("Transaction was successfully posted.")
 
     return redirect(url_for("index"))
 
@@ -76,7 +76,19 @@ def get_transaction():
             transactions)
     db.commit()
 
-    flash("New transaction was successfully getted.")
+    flash("Transaction was successfully getted.")
+
+    return redirect(url_for("index"))
+
+
+@app.route("/clear_transaction", methods=["GET"])
+def clear_transaction():
+    db = get_db()
+
+    cur = db.execute("delete from transactions")
+    db.commit()
+
+    flash("Transaction was successfully cleared.")
 
     return redirect(url_for("index"))
 

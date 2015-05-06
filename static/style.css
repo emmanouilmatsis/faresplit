@@ -8,14 +8,15 @@ h1 { color: #377ba8; font-family: 'Georgia', serif; font-size: 3em; text-align: 
 main { margin: 1em; }
 .transaction { margin: 0 auto; width: 37em; border: 4px solid #ccc; background: white; }
 .flash { background: #377ba8; color: #fff; padding: 0.5em; list-style: none; }
-.post-transaction { margin: 1em; }
-.post-transaction dl { background: #eee; }
+.post-transaction { margin: 1em 1em 0.25em 1em; }
+.post-transaction dl { background: white; }
 .post-transaction dl dt { float: left; width: 8em; height: 1em; margin-right: 0.5em; padding: 0.5em; background: #777; color: #fff; font-size: 1em; font-weight: bold; }
 .post-transaction dl dd { height: 2em; margin: 0.25em 0; }
 .post-transaction input[type=text] { height: 1em; width: 24.5em; padding: 0.25em; font-size: 1em; border: 0.25em solid #ccc;}
 .post-transaction input[type=submit] { height: 2em; width: 35em; padding: 0.5em; background: #ccc; color: #fff; font-size: 1em; font-weight: bold; border-style: none;}
-.get-transaction { display: block; height: 1em; width: 34em; margin: 1em; padding: 0.5em; background: #ccc; color: #fff; font-size: 1em; font-weight: bold; text-decoration: none; text-align: center; }
-.list-transaction { margin: 1em; list-style: none; }
+.get-transaction { display: block; height: 1em; width: 34em; margin: 0.25em 1em; padding: 0.5em; background: #ccc; color: #fff; font-size: 1em; font-weight: bold; text-decoration: none; text-align: center; }
+.clear-transaction { display: block; height: 1em; width: 34em; margin: 0.25em 1em; padding: 0.5em; background: #ccc; color: #fff; font-size: 1em; font-weight: bold; text-decoration: none; text-align: center; }
+.list-transaction { margin: 0.25em 1em 1em 1em; list-style: none; }
 .list-transaction dl { background: #eee; }
 .list-transaction dl dt { float: left; width: 8em; height: 1em; margin-right: 0.5em; padding: 0.5em; background: #377ba8; color: #fff; font-size: 1em; font-weight: bold; }
 .list-transaction dl dd { height: 2em; margin: 0.25em 0; font-size: 1em; font-weight: bold; line-height: 2em; }

@@ -30,6 +30,8 @@
 
     <a href="{{ url_for('get_transaction') }}" class="get-transaction">Get</a>
 
+    <a href="{{ url_for('clear_transaction') }}" class="clear-transaction">Clear</a>
+
     <ul class="list-transaction">
         {% for transaction in transactions %}
         <li>
@@ -44,8 +46,6 @@
                 <dd>{{ transaction[3] }}</dd>
             </dl>
         </li>
-        {% else %}
-        <li>No transactions.</li>
         {% endfor %}
     </ul>
 </section>
