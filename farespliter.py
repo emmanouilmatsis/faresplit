@@ -19,9 +19,9 @@ class User:
     def balance(self, value):
         self.__balance = decimal.Decimal(value)
 
-    def __init__(self, name):
+    def __init__(self, name, balance):
         self.name = name
-        self.balance = 0
+        self.balance = balance
 
 
 class Transaction:
@@ -48,7 +48,7 @@ class Transaction:
 
     @amount.setter
     def amount(self, value):
-        self.__amount = abs(decimal.Decimal(value))
+        self.__amount = decimal.Decimal(value)
 
     def __init__(self, payer, payee, amount):
         self.payer = payer
@@ -69,33 +69,25 @@ class Farespliter:
         for transaction in transactions:
             for payer in users:
                 if payer.name == transaction.payer:
-                    payer.balance -= transaction.amount
+                    payer.balance += transaction.amount
                     break
             else:
-                payer = User(transaction.payer)
-                payer.balance -= transaction.amount
+                payer = User(transaction.payer, transaction.amount)
                 users.append(payer)
 
-            if transaction.payee == "*":
-                for payee in users:
-                    if payee.name != transaction.payer:
-                        payee.balance += transaction.amount / (len(users) - 1)
-            else:
+            if transaction.payee != "*":
                 for payee in users:
                     if payee.name == transaction.payee:
-                        payee.balance += transaction.amount
+                        payee.balance -= transaction.amount
                         break
                 else:
-                    payee = User(transaction.payee)
-                    payee.balance += transaction.amount
+                    payee = User(transaction.payee, transaction.amount)
                     users.append(payee)
-                    # new payee maintaines balance as long as it becomes a member of
-                    # users, since the money are still distributed inside the group.
 
-        total = sum(user.balance for user in users) / len(users)
+        total = sum(user.balance for user in users)
 
         for user in users:
-            user.balance -= total
+            user.balance -= total / len(users)
             print(user.name, user.balance)
 
         return users
@@ -110,7 +102,7 @@ class Farespliter:
             j = 0
             while j < n - i:
 
-                if users[j].balance < users[j+i].balance:
+                if users[j].balance > users[j+i].balance: #XXX: borrower is negativve
                     users[j], users[j+i] = users[j+i], users[j]
 
                 transaction = Transaction(users[j].name, users[j+i].name, users[j+i].balance)
